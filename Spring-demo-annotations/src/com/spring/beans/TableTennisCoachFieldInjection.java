@@ -11,12 +11,11 @@ public class TableTennisCoachFieldInjection implements Coach {
 
 	/*
 	 * Behind the scene spring framework set this field.
-	 * Spring framework also sets the private field
 	 */
 	@Autowired
-	private FortuneService fortuneService;
+	FortuneService fortuneService;
 
-	public TableTennisCoachFieldInjection() {
+	public TableTennisCoachFieldInjection(FortuneService fortuneService) {
 		System.out.println("TableTennisCoachFieldInjection: Inside default constructor");
 	}
 
