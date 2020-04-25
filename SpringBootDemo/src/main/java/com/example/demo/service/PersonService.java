@@ -15,7 +15,7 @@ public class PersonService {
     private final PersonDao personDao;
 
     @Autowired
-    public PersonService(@Qualifier("fakePersonDataAccessServer") PersonDao personDao) {
+    public PersonService(@Qualifier("postgress") PersonDao personDao) {
         this.personDao = personDao;
     }
 
@@ -24,7 +24,7 @@ public class PersonService {
     }
 
     public List<Person> getAllPeople() {
-        return personDao.selectAllPeope();
+        return personDao.selectAllPeople();
     }
 
     public Optional<Person> getPersonById(UUID id) {

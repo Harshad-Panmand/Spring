@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public class FakePersonDataAccessServer implements PersonDao {
 
-    private static List<Person> DB = new ArrayList<>();
+    private static final List<Person> DB = new ArrayList<>();
 
     @Override
     public int insertPerson(UUID id, Person person) {
@@ -20,7 +20,7 @@ public class FakePersonDataAccessServer implements PersonDao {
     }
 
     @Override
-    public List<Person> selectAllPeope() {
+    public List<Person> selectAllPeople() {
         return DB;
     }
 
