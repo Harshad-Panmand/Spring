@@ -15,7 +15,7 @@ public interface PersonDao {
         return insertPerson(id, person);
     }
 
-    List<Person> selectAllPeope();
+    List<Person> selectAllPeople();
 
     Optional<Person> selectPersonById(UUID id);
 
