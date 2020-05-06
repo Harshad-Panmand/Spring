@@ -13,11 +13,15 @@
 <h1>Design your taco!</h1>
 <img th:src="@{/images/TacoCloud2.jpg}">
 
-<form method="POST" th:action="@{/design}" th:object="${design}">
+<!-- Below ${design} is from model.addAttribute("design", new Taco()) of DesignTacoController class-->
+<form method="POST" th:object="${design}">
     <div class="grid">
 
         <div class="ingredient-group" id="wraps">
             <h3>Designate your wrap:</h3>
+            <!-- Below ${wrap} is from
+            model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type))
+            of DesignTacoController class-->
             <div th:each="ingredient : ${wrap}">
                 <input name="ingredients" type="checkbox" th:value="${ingredient.id}" />
                 <span th:text="${ingredient.name}">INGREDIENT</span><br/>
@@ -61,7 +65,11 @@
 
     <div>
         <h3>Name your taco creation:</h3>
+        <!-- Below *{name} comes from th:object="${design}"-->
         <input type="text" th:field="*{name}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}">Name Error</span>
         <br/>
         <button>Submit your taco</button>
     </div>
