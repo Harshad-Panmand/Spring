@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
-public class DesignTacoController {
+    public class DesignTacoController {
 
     private final IngredientRepository ingredientRepository;
     private final TacoRepository tacoRepository;
@@ -32,8 +32,8 @@ public class DesignTacoController {
         return new Order();
     }
 
-    @ModelAttribute(name = "taco")
-    public Taco taco() {
+    @ModelAttribute(name = "design")
+    public Taco taco(){
         return new Taco();
     }
 
@@ -55,7 +55,7 @@ public class DesignTacoController {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
 
-        //model.addAttribute("design", new Taco());
+        model.addAttribute("design", new Taco());
 
         return "design";
     }
