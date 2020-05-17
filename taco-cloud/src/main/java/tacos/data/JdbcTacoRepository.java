@@ -38,12 +38,14 @@ public class JdbcTacoRepository implements TacoRepository {
     private long saveTacoInfo(Taco taco) {
         taco.setCreatedAt(new Date());
 
-        PreparedStatementCreator psc = new PreparedStatementCreatorFactory(
+        PreparedStatementCreatorFactory pscf = new PreparedStatementCreatorFactory(
                 "insert into Taco (tacoName, createdAt) values (?,?)",
-                Types.NVARCHAR, Types.TIMESTAMP)
-                .newPreparedStatementCreator(
-                        Arrays.asList(taco.getTacoName(),
-                                new Timestamp(taco.getCreatedAt().getTime())));
+                Types.NVARCHAR, Types.TIMESTAMP);
+
+        pscf.setReturnGeneratedKeys(true);
+
+        PreparedStatementCreator psc = pscf.newPreparedStatementCreator(
+                Arrays.asList(taco.getTacoName(), new Timestamp(taco.getCreatedAt().getTime())));
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbc.update(psc, keyHolder);
